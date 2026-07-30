@@ -1,0 +1,16 @@
+# Verilator output
+obj_dir/
+
+#Waveform files
+*.vcd
+
+# Executables
+*.exe
+*.out
+
+# VS Code settings (optional)
+.vscode/
+
+# Temporary files
+*.log
+*.tmp
