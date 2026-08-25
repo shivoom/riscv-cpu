@@ -14,6 +14,7 @@ echo ""
 passed=0
 failed=0
 total=0
+failed_chips=()
 
 for chip in "$RTL_DIR"/*.sv; do
 
@@ -30,6 +31,7 @@ for chip in "$RTL_DIR"/*.sv; do
     if [ ! -f "$tb" ]; then
         echo "ERROR: No testbench found: $tb"
         failed=$((failed + 1))
+        failed_chips+=("$name")
         continue
     fi
 
@@ -49,11 +51,13 @@ for chip in "$RTL_DIR"/*.sv; do
         else
             echo "✗ $name FAILED"
             failed=$((failed + 1))
+            failed_chips+=("$name")
         fi
 
     else
         echo "✗ $name FAILED TO COMPILE"
         failed=$((failed + 1))
+        failed_chips+=("$name")
     fi
 
     echo ""
@@ -66,6 +70,14 @@ echo "Total:  $total"
 echo "Passed: $passed"
 echo "Failed: $failed"
 echo "================================"
+
+if [ "$failed" -ne 0 ]; then
+    echo "Failed tests:"
+    for chip in "${failed_chips[@]}"; do
+        echo "- $chip"
+    done
+    echo "================================"
+fi
 
 if [ "$failed" -ne 0 ]; then
     exit 1
