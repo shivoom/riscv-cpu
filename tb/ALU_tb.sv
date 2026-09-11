@@ -1,18 +1,16 @@
 module ALU_tb;
-    logic [31:0] x;
-    logic [31:0] y;
+    logic [31:0] a;
+    logic [31:0] b;
     logic zr;
-    logic ng;
-    logic [31:0] out;
-    logic [1:0] sel;
+    logic [31:0] result;
+    logic [1:0] alu_ctrl;
 
     ALU dut (
-        .x(x),
-        .y(y),
-        .sel(sel),
+        .a(a),
+        .b(b),
+        .alu_ctrl(alu_ctrl),
         .zr(zr),
-        .ng(ng),
-        .out(out)
+        .result(result)
     );
 
 initial begin
