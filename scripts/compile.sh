@@ -5,6 +5,7 @@ set -e
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RTL_DIR="$PROJECT_ROOT/rtl"
 TB_DIR="$PROJECT_ROOT/tb"
+BUILD_DIR="$PROJECT_ROOT/obj_dir/rtl"
 
 echo "================================"
 echo "       RISC-V CHIP TESTS"
@@ -35,17 +36,21 @@ for chip in "$RTL_DIR"/*.sv; do
         continue
     fi
 
+    CHIP_BUILD_DIR="$BUILD_DIR/$name"
+    mkdir -p "$CHIP_BUILD_DIR"
+
     # Compile and run with Verilator
     if verilator --binary \
         --assert \
         "$chip" \
         "$tb" \
         --top-module "${name}_tb" \
+        --Mdir "$CHIP_BUILD_DIR" \
         -o "${name}_test"; then
 
         echo "Running $name..."
 
-        if "$PROJECT_ROOT/obj_dir/${name}_test"; then
+        if "$CHIP_BUILD_DIR/${name}_test"; then
             echo "✓ $name PASSED"
             passed=$((passed + 1))
         else
