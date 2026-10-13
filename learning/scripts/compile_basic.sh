@@ -2,7 +2,7 @@
 
 set -e
 
-PROJECT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 BASIC_DIR="$PROJECT_ROOT/learning/basic_components"
 TB_DIR="$BASIC_DIR/tb"
 BUILD_DIR="$PROJECT_ROOT/obj_dir/basic_components"
