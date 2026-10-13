@@ -19,8 +19,8 @@ initial begin
         assert(y0 == 0);
         assert(y1 == 0);
         a = 1; sel = 0; #10;
-        assert(y0 == 1 && y1 == 0)
-            else $fatal("test failed");
+        assert(y0 == 1);
+        assert(y1 == 0);
 
         a = 0; sel = 1; #10;
         assert(y0 == 0);
