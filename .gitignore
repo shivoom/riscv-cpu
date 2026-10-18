@@ -14,3 +14,5 @@ obj_dir/
 # Temporary files
 *.log
 *.tmp
+obj_dir/
+waves/
