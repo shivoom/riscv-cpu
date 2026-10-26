@@ -5,9 +5,8 @@ module regfile (
     input logic [4:0] rs2_addr,
     input logic [4:0] rd_addr,
     input logic [31:0] rd_data,
-    input logic [31:0] rs1_data,
-    input logic [31:0] rs2_data,
-
+    output logic [31:0] rs1_data,
+    output logic [31:0] rs2_data
 );
     //32 registers, holding 32 bits of data
     logic [31:0] regs [31:0];
